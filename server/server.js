@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require('cors')
 require('dotenv').config()
 const { graphqlHTTP } = require("express-graphql")
 const app = express()
@@ -8,6 +9,8 @@ const connectDB = require("./config/db")
 const schema = require("./schema/schema")
 
 connectDB()
+
+app.use(cors())
 
 app.use("/graphql", graphqlHTTP({
     schema,
