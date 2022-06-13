@@ -2,8 +2,10 @@ import { useMutation, useQuery } from "@apollo/client"
 import { useState } from "react"
 import { ADD_PROJECT } from "../mutations/projectMutation"
 import { GET_CLIENTS, GET_PROJECTS } from "../queries/clientQueries"
+import ClearIcon from '@mui/icons-material/Clear';
+import "../styles/Form.scss"
 
-export default function AddProjectForm() {
+export default function AddProjectForm({ clickHandler }) {
 
     const options = [
         { label: "NOT STARTED", value: "NOT_STARTED" },
@@ -55,30 +57,35 @@ export default function AddProjectForm() {
     }
 
     return (
-        <form method="post" onSubmit={submitHandler}>
-            <input type="text" placeholder="Project Name" name="name" value={formData.name} onChange={changeHandler} required={true} />
-            <textarea placeholder="Project Description" name="desc" value={formData.email} onChange={changeHandler} required={true} />
-            <label> Status
-                <select name="status" value={formData.status} onChange={changeHandler}>
-                    {
-                        options.map((option, key) => (
-                            <option key={key} value={option.value}>{option.value}</option>
-                        ))
-                    }
-                </select>
-            </label>
-            <label>
-                <select name="clientId" value={formData.clientId} onChange={changeHandler}>
-                    <option value="">Select client</option>
-                    {
-                        data.clients.map((option, key) => (
-                            <option key={key} value={option.id}>{option.name}</option>
-                        ))
-                    }
-                </select>
-            </label>
+        <div className="form-container">
+            <div className="close">
+                <ClearIcon onClick={clickHandler} />
+            </div>
+            <form method="post" onSubmit={submitHandler}>
+                <input type="text" placeholder="Project Name" name="name" value={formData.name} onChange={changeHandler} required={true} />
+                <textarea placeholder="Project Description" name="desc" value={formData.email} onChange={changeHandler} required={true} />
+                <label> Status
+                    <select name="status" value={formData.status} onChange={changeHandler}>
+                        {
+                            options.map((option, key) => (
+                                <option key={key} value={option.value}>{option.value}</option>
+                            ))
+                        }
+                    </select>
+                </label>
+                <label>
+                    <select name="clientId" value={formData.clientId} onChange={changeHandler}>
+                        <option value="">Select client</option>
+                        {
+                            data.clients.map((option, key) => (
+                                <option key={key} value={option.id}>{option.name}</option>
+                            ))
+                        }
+                    </select>
+                </label>
 
-            <button>Submit</button>
-        </form>
+                <button className="button-4">Submit</button>
+            </form>
+        </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import AddClientForm from "./AddClientForm"
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 
 export default function AddClientModel() {
 
@@ -11,10 +12,11 @@ export default function AddClientModel() {
 
     return (
         <>
-            <button type="submit" onClick={submitHandler}>
+            <button className="button-4" type="submit" onClick={submitHandler}>
+                <PersonAddAlt1Icon />
                 Add Client
             </button>
-            {show && <AddClientForm />}
+            {show && <AddClientForm clickHandler={submitHandler} />}
         </>
     )
 }

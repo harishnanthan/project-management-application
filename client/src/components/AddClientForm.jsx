@@ -2,8 +2,10 @@ import { useMutation } from "@apollo/client"
 import { useState } from "react"
 import { ADD_CLIENT } from "../mutations/clientMutations"
 import { GET_CLIENTS } from "../queries/clientQueries"
+import "../styles/Form.scss"
+import ClearIcon from '@mui/icons-material/Clear';
 
-export default function AddClientForm() {
+export default function AddClientForm({ clickHandler }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -42,11 +44,16 @@ export default function AddClientForm() {
     }
 
     return (
-        <form method="post" onSubmit={submitHandler}>
-            <input type="text" placeholder="Name" name="name" value={formData.name} onChange={changeHandler} required={true} />
-            <input type="email" placeholder="Email" name="email" value={formData.email} onChange={changeHandler} required={true} />
-            <input type="tel" placeholder="Phone" name="phone" value={formData.phone} onChange={changeHandler} required={true} />
-            <button>Submit</button>
-        </form>
+        <div className="form-container">
+            <div className="close">
+                <ClearIcon onClick={clickHandler} />
+            </div>
+            <form method="post" onSubmit={submitHandler}>
+                <input type="text" placeholder="Name" name="name" value={formData.name} onChange={changeHandler} required={true} />
+                <input type="email" placeholder="Email" name="email" value={formData.email} onChange={changeHandler} required={true} />
+                <input type="tel" placeholder="Phone" name="phone" value={formData.phone} onChange={changeHandler} required={true} />
+                <button className="button-4">Submit</button>
+            </form>
+        </div>
     )
 }

@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client"
 import ClinetsTable from "./ClinetsTable"
 import { GET_CLIENTS } from "../queries/clientQueries"
+import "../styles/Clients.scss"
 
 export default function Clients() {
 
@@ -11,8 +12,8 @@ export default function Clients() {
     if (error) return <p>Somthing went wrong</p>
 
     return (
-        <>
+        <div className="client-container">
             {!loading && !error && <ClinetsTable data={data} />}
-        </>
+        </div>
     )
 }

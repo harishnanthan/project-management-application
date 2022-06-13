@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { DELETE_CLIENT } from "../mutations/clientMutations"
 import { GET_CLIENTS, GET_PROJECTS } from "../queries/clientQueries"
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ClientTableBody({ data }) {
     const [removeClient] = useMutation(DELETE_CLIENT, {
@@ -17,7 +18,8 @@ export default function ClientTableBody({ data }) {
             <td>{data.phone}</td>
             <td>{data.email}</td>
             <td>
-                <button value="delete" onClick={removeClient} >
+                <button value="delete" className="button-4" onClick={removeClient} >
+                    <DeleteIcon />
                     Delete
                 </button>
             </td>

@@ -4,6 +4,7 @@ import ClientTableBody from "./ClientTableBody"
 export default function ClinetsTable({ data }) {
     return (
         <table>
+            <caption>Client Details</caption>
             <thead>
                 <tr>
                     <th>Name</th>
